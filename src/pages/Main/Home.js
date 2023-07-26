@@ -7,7 +7,7 @@ const Home = () => {
   useEffect(() => {
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data.data));
+      .then((data) => setProducts(data));
   }, []);
 
   const activeClass = "text-white  bg-indigo-500 border-white";
