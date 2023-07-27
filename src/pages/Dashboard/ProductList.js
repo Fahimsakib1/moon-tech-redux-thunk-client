@@ -54,7 +54,7 @@ const ProductList = () => {
                   <td class='p-2'>
                     <div class='text-left'>
                       {status ? (
-                        <p className='text-green-500 font-medium'>Available</p>
+                        <p className='text-green-500 font-medium '>Available</p>
                       ) : (
                         <p className='text-red-500 font-medium'>Stock out</p>
                       )}

@@ -5,10 +5,19 @@ import { useLocation } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 import { addToCart, removeFromCart } from "../redux/actions/productAction";
 
+
+
+
+
 const ProductCard = ({ product }) => {
+  
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+
+
+
   return (
+
     <div className='shadow-lg relative rounded-3xl border p-3 flex flex-col text-indigo-900'>
       {pathname.includes("cart") && (
         <div className='rounded-full grid place-items-center absolute top-2 right-2 bg-indigo-500 text-white h-8 w-8 font-bold '>
@@ -18,6 +27,9 @@ const ProductCard = ({ product }) => {
       <div className='h-52 w-52 mx-auto'>
         <img src={product.image} alt={product.model} />
       </div>
+      
+      <p className={`text-center mb-1 ${product.status === true ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}`}>{product.status === true ? 'In Stock' : 'Out of Stock'}</p>
+
       <h1 className='font-bold text-center'>{product.model}</h1>
       <p className='text-center font-semibold mb-3'>Rating: {product.rating}</p>
       <div className=' flex-1'>
@@ -31,6 +43,7 @@ const ProductCard = ({ product }) => {
           })}
         </ul>
       </div>
+
       <div className='flex gap-2 mt-5'>
         {!pathname.includes("cart") && (
           <button
