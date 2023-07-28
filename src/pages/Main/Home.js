@@ -34,11 +34,7 @@ const Home = () => {
   const fetchedProducts = useSelector((state) => state.product.products);
   console.log("Home Page Product State", fetchedProducts);
 
-  const activeClass = "text-white bg-indigo-500 border-white";
-
-
-  const filterState = useSelector
-    ((state) => state.filter.filters);
+  const filterState = useSelector((state) => state.filter.filters);
   console.log("State:", filterState);
 
   const { brands, stock } = filterState;
@@ -109,7 +105,7 @@ const Home = () => {
 
 
 
-
+  const activeClass = "text-white bg-indigo-500 border-white";
 
   return (
     <div className='max-w-7xl gap-14 mx-auto my-10'>

@@ -1,10 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import addProductData from "../../redux/thunk/products/addProductData";
+
+
+
 
 const AddProduct = () => {
-  const { register, handleSubmit } = useForm();
+  
+  
+  const { register, handleSubmit, reset } = useForm();
+
+  const dispatch = useDispatch();
 
   const submit = (data) => {
+    
     const product = {
       model: data.model,
       brand: data.brand,
@@ -19,8 +29,13 @@ const AddProduct = () => {
       spec: [],
     };
 
-    console.log(product);
+    dispatch(addProductData(product));
+    console.log("Added Product", product);
+    reset();
   };
+
+
+
 
   return (
     <div className='flex justify-center items-center h-full '>
