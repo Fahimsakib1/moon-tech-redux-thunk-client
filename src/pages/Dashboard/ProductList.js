@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchProductData from "../../redux/thunk/products/fetchProducts";
 import deleteProductData from "../../redux/thunk/products/deleteProductData";
+import { FiEdit } from 'react-icons/fi';
+import { Link } from "react-router-dom";
+import getProductDataByID from "../../redux/thunk/products/getProductDataByID";
+
+
+
+
 
 const ProductList = () => {
-  
+
   const fetchedProducts = useSelector((state) => state.product.products);
-  
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProductData())
@@ -74,11 +81,13 @@ const ProductList = () => {
                       {price}
                     </div>
                   </td>
-                  <td className='p-2'>
-                    <div className='flex justify-center'>
+                  <td className='p-2  -ml-16'>
+                    <div className=' flex justify-around items-center'>
+
+
                       <button onClick={() => dispatch(deleteProductData(_id))}>
                         <svg
-                          className="w-8 h-8  rounded-full  p-1 hover:text-blue-600 hover:bg-gray-300"
+                          className="w-8 h-8 rounded-full  p-1 hover:text-blue-600 hover:bg-gray-300"
                           fill='none'
                           stroke='currentColor'
                           viewBox='0 0 24 24'
@@ -91,7 +100,15 @@ const ProductList = () => {
                             d='M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16'
                           ></path>
                         </svg>
-                      </button>
+                      </button> 
+
+                      <Link onClick={() => dispatch(getProductDataByID(_id))} to='/dashboard/edit-product'>
+                        <div  title='Edit Product' className='cursor-pointer p-2 hover:text-blue-600 hover:bg-gray-300 rounded-full'>
+                          <FiEdit className="text-xl font-semibold"></FiEdit>
+                        </div>
+                      </Link>
+
+
                     </div>
                   </td>
                 </tr>

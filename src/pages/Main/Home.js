@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleBrand, toggleStock } from "../../redux/actions/filterAction";
+import { clearFilters, toggleBrand, toggleStock } from "../../redux/actions/filterAction";
 import { loadProduct } from "../../redux/actions/productAction";
 import fetchProductData from "../../redux/thunk/products/fetchProducts";
+import fetchAllProductsForClearFilter from "../../redux/thunk/products/fetchAllProductsForClearFilter";
 
 
 
@@ -35,7 +36,7 @@ const Home = () => {
   console.log("Home Page Product State", fetchedProducts);
 
   const filterState = useSelector((state) => state.filter.filters);
-  console.log("State:", filterState);
+  console.log("Home Page State:", filterState);
 
   const { brands, stock } = filterState;
 
@@ -124,6 +125,13 @@ const Home = () => {
         <button onClick={() => dispatch(toggleBrand("intel"))} className={`border px-3 py-2 rounded-full font-semibold  ${brands.includes("intel") ? activeClass : null}`}>
           Intel
         </button>
+
+        <button onClick={() => dispatch(fetchAllProductsForClearFilter())} title='Clear All Filters'
+          className={`px-3 py-1 rounded-sm bg-red-500 hover:bg-red-600 text-white font-semibold`}
+        >
+          Clear All Filters
+        </button>
+
       </div>
 
 

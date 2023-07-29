@@ -13,9 +13,8 @@ export const deleteProductData = (id) => {
         if (data.deletedCount > 0) {
             
             //j kono ekta dispatch likhlei hobe
-
-            // dispatch(addProduct(product));
             
+            // dispatch(addProduct(product));
             dispatch(removeProduct(id))
         }
     }

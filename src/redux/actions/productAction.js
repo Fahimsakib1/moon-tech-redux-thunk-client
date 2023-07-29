@@ -1,10 +1,12 @@
 import {
   ADD_PRODUCT,
   ADD_TO_CART,
+  EDIT_PRODUCT,
   LOAD_PRODUCT,
   PRODUCT_LOADED,
   REMOVE_FROM_CART,
   REMOVE_PRODUCT,
+  UPDATE_PRODUCT,
 } from "../actionTypes/actionTypes";
 
 
@@ -15,6 +17,20 @@ export const loadProduct = (data) => {
   }
 }
 
+//this function is for getting the product by ID which is going to be updated
+export const editProduct = (id) => {
+  return {
+    type: EDIT_PRODUCT,
+    payload: id
+  }
+}
+
+export const updateProduct = (product) => {
+  return {
+    type: UPDATE_PRODUCT,
+    payload: product
+  }
+}
 
 export const addProduct = (product) => {
   return {

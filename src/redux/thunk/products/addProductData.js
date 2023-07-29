@@ -16,7 +16,6 @@ export const addProductData = (product) => {
             //j kono ekta dispatch likhlei hobe
 
             // dispatch(addProduct(product));
-            
             dispatch(addProduct({
                 _id: data.insertedId,
                 ...product,

@@ -1,10 +1,12 @@
 import {
   ADD_PRODUCT,
   ADD_TO_CART,
+  EDIT_PRODUCT,
   LOAD_PRODUCT,
   PRODUCT_LOADED,
   REMOVE_FROM_CART,
   REMOVE_PRODUCT,
+  UPDATE_PRODUCT,
 } from "../actionTypes/actionTypes";
 
 const initialState = {
@@ -15,9 +17,13 @@ const initialState = {
 
 
 const productReducer = (state = initialState, action) => {
+  
+  
   const selectedProduct = state.cart.find(
     (product) => product._id === action.payload._id
   );
+
+
 
   switch (action.type) {
 
@@ -26,6 +32,23 @@ const productReducer = (state = initialState, action) => {
         ...state,
         products: [...state.products, action.payload],
       };
+
+      //this function is for getting the product by ID which is going to be updated
+      case EDIT_PRODUCT:
+        return {
+          ...state,
+          products: state.products.find(
+            (product) => product._id === action.payload
+          ),
+        };
+
+        case UPDATE_PRODUCT:
+        return {
+          ...state,
+          // J kono ekta likhlei hobe
+          //products: action.payload, 
+          products: [...state.products, action.payload]
+        };
 
     case REMOVE_PRODUCT:
       return {
