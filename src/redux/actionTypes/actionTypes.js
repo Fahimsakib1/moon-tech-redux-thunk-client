@@ -8,6 +8,7 @@ export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const EDIT_PRODUCT = "EDIT_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const CLEAR_ALL_FILTERS = "CLEAR_ALL_FILTERS";
+export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 
 
 //for filter action types

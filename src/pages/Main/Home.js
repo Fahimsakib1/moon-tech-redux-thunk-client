@@ -40,6 +40,11 @@ const Home = () => {
 
   const { brands, stock } = filterState;
 
+  
+  const stateAfterSearchOnNavbar = useSelector((state) => state);
+  console.log("Home Page Main State:", stateAfterSearchOnNavbar.product.number);
+  
+
 
 
 
@@ -50,6 +55,7 @@ const Home = () => {
       <ProductCard key={product.model} product={product} />
     ))
   }
+
 
 
 
@@ -75,31 +81,48 @@ const Home = () => {
 
 
   let message;
-  if (stock) {
+  if (stock && stateAfterSearchOnNavbar.product.number === undefined) {
     message = "All Stocked Products"
   }
-  if (!stock) {
+  if (!stock && stateAfterSearchOnNavbar.product.number === undefined) {
     message = "All Products"
   }
-  if (stock && brands.includes("amd")) {
+  if (stock && brands.includes("amd") && stateAfterSearchOnNavbar.product.number === undefined) {
     message = "AMD Stocked Products"
   }
-  if (!stock && brands.includes("amd")) {
+  if (!stock && brands.includes("amd") && stateAfterSearchOnNavbar.product.number === undefined) {
     message = "All AMD Products"
   }
-  if (stock && brands.includes("intel")) {
+  if (stock && brands.includes("intel") && stateAfterSearchOnNavbar.product.number === undefined) {
     message = "Intel Stocked Products"
   }
-  if (!stock && brands.includes("intel")) {
+  if (!stock && brands.includes("intel") && stateAfterSearchOnNavbar.product.number === undefined) {
     message = "All Intel Products"
   }
-  if (stock && brands.includes("intel") && brands.includes("amd")) {
+  if (stock && brands.includes("intel") && brands.includes("amd") && stateAfterSearchOnNavbar.product.number === undefined) {
     message = "All Stocked Products"
   }
-  if (!stock && brands.includes("intel") && brands.includes("amd")) {
+  if (!stock && brands.includes("intel") && brands.includes("amd") && stateAfterSearchOnNavbar.product.number === undefined) {
     message = "All AMD and Intel Products"
   }
 
+
+
+
+  if (fetchedProducts.acknowledged === false &&  stateAfterSearchOnNavbar.product.number === 1 ) {
+    message = ""
+  }
+
+  if (!fetchedProducts.acknowledged && stateAfterSearchOnNavbar.product.number === 1) {
+    message = "Showing Searched Results" 
+  }
+
+  if (stateAfterSearchOnNavbar.product.number) {
+    message = "Showing Searched Results" 
+  }
+
+
+  
 
 
 
@@ -110,6 +133,7 @@ const Home = () => {
 
   return (
     <div className='max-w-7xl gap-14 mx-auto my-10'>
+
       <div className='mb-10 flex justify-end gap-5'>
 
         <button onClick={() => dispatch(toggleStock())}
@@ -138,9 +162,19 @@ const Home = () => {
       <p className='-mt-4 text-center font-semibold mb-4 text-xl text-blue-600'>{message}</p>
 
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14'>
-        {filterContent}
-      </div>
+      <>
+        {
+          fetchedProducts.acknowledged === false ?
+            <p className="mt-44 text-center text-gray-500 font-semibold text-4xl">
+              {fetchedProducts.message}
+            </p>
+            :
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14'>
+              {filterContent}
+            </div>
+        }
+
+      </>
     </div>
   );
 };

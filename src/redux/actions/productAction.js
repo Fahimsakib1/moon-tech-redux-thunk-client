@@ -6,6 +6,7 @@ import {
   PRODUCT_LOADED,
   REMOVE_FROM_CART,
   REMOVE_PRODUCT,
+  SEARCH_PRODUCT,
   UPDATE_PRODUCT,
 } from "../actionTypes/actionTypes";
 
@@ -64,5 +65,12 @@ export const loaded = (products) => {
   return {
     type: PRODUCT_LOADED,
     payload: products,
+  };
+};
+
+export const searchProduct = (data) => {
+  return {
+    type: SEARCH_PRODUCT,
+    payload: data,
   };
 };
